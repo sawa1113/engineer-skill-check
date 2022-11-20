@@ -2,7 +2,7 @@ class NoticesController < ApplicationController
   before_action :set_notice, only: %i(edit update destroy)
 
   def index
-    @notices = Notice.active.order("#{sort_column} #{sort_direction}")
+    @notices = Notice.all.page(params[:page]).per(10).active.order("#{sort_column} #{sort_direction}")
   end
 
   def new
